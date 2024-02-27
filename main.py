@@ -369,11 +369,12 @@ def books():
             A JSON response containing details of all available books.
     """
     book_list = all_books()
-    book_lis = [lis.title for lis in book_list]
-    print(book_lis)
-    data_dict = {}
+    # book_lis = [lis.title for lis in book_list]
+    # print(book_lis)
+
     data_list = []
     for i in book_list:
+        data_dict = {}
         data_dict['title'] = i.title
         data_dict['description'] = i.description
         data_dict['genre'] = i.genre
