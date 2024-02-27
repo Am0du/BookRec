@@ -309,7 +309,9 @@ def find_genre(genre):
             book_dict = {
                 'title': book.title,
                 'genre': book.genre,
-                'description': book.description
+                'description': book.description,
+                'author': book.author.name,
+                'about author': book.author.about
             }
             genre_list.append(book_dict)
 
