@@ -369,8 +369,8 @@ def books():
             A JSON response containing details of all available books.
     """
     data = all_books()
-    print(data)
     data_dict = {}
+    data_list = []
     for i in data:
         data_dict['title'] = i.title
         data_dict['description'] = i.description
@@ -378,7 +378,9 @@ def books():
         data_dict['author'] = i.author.name
         data_dict['about_author'] = i.author.about
 
-    return data_dict
+        data_list.append(data_dict)
+
+    return jsonify(isSuccessful='true', books=data_list, status_code=200), 200
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
