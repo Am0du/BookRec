@@ -24,8 +24,9 @@ def token_required(func):
         try:
             jwt.decode(token, app.secret_key, algorithms=['HS256'])
         except jwt.DecodeError:
-            return jsonify(info='Invalid Token', isSuccessful='false'), 403
-
+            return jsonify(info='Invalid Token', isSuccessful='false', status_code=403), 403
+        except jwt.ExpiredSignatureError:
+            return jsonify(info='Expired Token', isSuccessful='false', status_code=403), 403
         return func(*args, **kwargs)
 
     return decorated
