@@ -345,7 +345,8 @@ def book():
                 'title': result.title,
                 'description': result.description,
                 'genre': result.genre,
-                'author': result.author.name
+                'author': result.author.name,
+                'about_author': result.author.about
             }
         }
         return jsonify(data), 200
@@ -372,6 +373,7 @@ def books():
         data_dict['description'] = i.description
         data_dict['genre'] = i.genre
         data_dict['author'] = i.author.name
+        data_dict['about_author'] = i.author.about
 
     return data_dict
 
