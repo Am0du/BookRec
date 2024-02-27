@@ -1,0 +1,13 @@
+# Ignore files with .pyc extension
+*.pyc
+
+# Ignore directories named 'venv' or 'env'
+venv/
+env/
+
+# Ignore files in the 'data' directory
+data/*
+
+# Ignore IDE files
+.idea/
+.vscode/
