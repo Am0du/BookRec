@@ -288,6 +288,34 @@ def delete():
     else:
         return jsonify(isSuccessful='false', info='Book does not exist', status_code=404), 404
 
+@app.route('/api/my_books', methods=['GET'])
+@token_required
+def my_books():
+    """
+        Returns Author books with
+
+        This function retrieves books of authorized author.
+
+        Parameters:
+             None (uses data from the request and header)
+
+        Returns:
+            A JSON response containing list of books of author, or a message indicating no book was found.
+        """
+    author_email = header_detail()
+    author = find_author(author_email)
+    author_books = author.books
+    if not author_books:
+        return jsonify(isSuccessful='false', info="No books found", status_code=404), 404
+
+    book_list = []
+    for books in author_books:
+        data_dict = {'title': books.title, 'description': books.description, 'genre': books.genre,
+                     'author': books.author.name, 'about_author': books.author.about}
+
+        book_list.append(data_dict)
+
+    return jsonify(isSuccessful='true', books=book_list, status_code=200), 200
 
 @app.route('/api/genre/<genre>', methods=['GET'])
 def find_genre(genre):
@@ -373,13 +401,9 @@ def books():
     # print(book_lis)
 
     data_list = []
-    for i in book_list:
-        data_dict = {}
-        data_dict['title'] = i.title
-        data_dict['description'] = i.description
-        data_dict['genre'] = i.genre
-        data_dict['author'] = i.author.name
-        data_dict['about_author'] = i.author.about
+    for book in book_list:
+        data_dict = {'title': book.title, 'description': book.description, 'genre': book.genre,
+                     'author': book.author.name, 'about_author': book.author.about}
 
         data_list.append(data_dict)
 

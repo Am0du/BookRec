@@ -26,6 +26,10 @@ Allows authenticated authors to edit their own details, such as name and about i
 
 Allows authenticated authors to delete their own books. Authors must provide the title of the book to be deleted. Upon successful deletion, a success message is returned.
 
+## My Books
+
+This route is responsible for retrieving the books authored by the authorized author.
+
 ## Get Books by Genre
 
 Allows users to retrieve a list of books based on a specific genre. Users provide the genre as a parameter in the URL. Upon successful retrieval, a list of books matching the genre is returned.

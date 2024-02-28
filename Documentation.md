@@ -210,6 +210,7 @@ Author edits his details.
             }
             ```
 
+
 ## Delete Book
 Author deletes his books.
 
@@ -244,6 +245,38 @@ Author deletes his books.
                 "status_code": 404 (or 401)
             }
             ```
+## Author's Books
+Returns all books by author.
+
+- **URL**: `/api/my_books`
+- **Method**: `GET`
+- **Request Headers**:
+    - Authorization: `Bearer <JWT>`
+- **Response**: 
+    - Success:
+        - Status Code: `200`
+        - Body: A list of dictionaries containing book details.
+            ```json
+            [
+                {
+                    "title": "string",
+                    "description": "string",
+                    "genre": "string",
+                    "author": "string"
+                }
+            ]
+            ```
+    - Failure:
+        - Status Code: `404`
+        - Body:
+            ```json
+            {
+                "isSuccessful": "false",
+                "info": "No book found",
+                "status_code": 404
+            }
+            ```
+          
 
 ## Get Books by Genre
 Returns books with requested genre.
